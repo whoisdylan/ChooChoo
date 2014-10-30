@@ -1,0 +1,13 @@
+[
+{
+  "directory": "/Users/dylan/gits/baller",
+  "command": "clang++ -std=c++11 -O3 -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1 -c baller_main.cc -o objects/main_baller.o",
+  "file": "/Users/dylan/gits/baller/baller_main.cc"
+}
+,
+{
+  "directory": "/Users/dylan/gits/baller",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -std=c++11 -O3 -c baller_main.cc -o objects/main_baller.o",
+  "file": "/Users/dylan/gits/baller/baller_main.cc"
+}
+]
