@@ -5,10 +5,10 @@ OBJS = main_baller.o
 
 all: baller
 
-baller: objects/$(OBJS) Ball.hh
+baller: objects/$(OBJS)
 	$(CC) $(CFLAGS) -o main_baller objects/$(OBJS)
 
-objects/main_baller.o: baller_main.cc
+objects/main_baller.o: baller_main.cc Ball.hh
 	$(CC) -std=c++11 -O3 -c baller_main.cc -o objects/main_baller.o
 
 # objects/ball.o: Ball.hh
