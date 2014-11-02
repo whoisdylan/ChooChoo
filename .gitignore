@@ -1,3 +1,5 @@
 *.un~
 *.swp
 objects/
+main_baller
+.ycm_extra_conf.pyc
