@@ -2,6 +2,7 @@
 #include <math.h>
 #include <iostream>
 #include "Ball.hh"
+#include "Level.hh"
 
 #define PI 3.14159265
 
