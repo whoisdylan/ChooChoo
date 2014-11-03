@@ -1,17 +1,17 @@
 #include "Level.hh"
 
-class Level1 : Level {
-  public:
-    Level1() {
-      Vector2<int> level1TeeOff(9,5);
-      Vector2<int> level1Hole(0,5);
-      vector< vector<TERRAIN_TYPE> > level1Map(10, vector<TERRAIN_TYPE>(10, GRASS));
-      level1Map[level1TeeOff.x][level1Hole.y] = TEEOFF;
-      level1Map[level1Hole.x][level1Hole.y] = HOLE;
-      for (int row = 0; row < level1Map.size(); row++) {
-        Level1Map[row][3] = WALL;
-        Level1Map[row][7] = WALL;
-      }
-      Level(teeOff, hole, level1Map);
+class Level1 : public Level {
+public:
+  Level1() {
+    this->teeOff = Vector2<int>(9,5);
+    this->hole = Vector2<int>(0,5);
+    this->map = vector< vector<TERRAIN_TYPE> >(10, vector<TERRAIN_TYPE>(10, GRASS));
+    this->map[this->teeOff.x][this->teeOff.y] = TEEOFF;
+    this->map[this->hole.x][this->hole.y] = HOLE;
+    for (int row = 0; row < this->map.size(); row++) {
+      this->map[row][3] = WALL;
+      this->map[row][7] = WALL;
     }
+    printMap();
+  }
 };

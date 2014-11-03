@@ -2,7 +2,7 @@
 #include <math.h>
 #include <iostream>
 #include "Ball.hh"
-#include "Level.hh"
+#include "Level1.cc"
 
 #define PI 3.14159265
 
@@ -73,6 +73,8 @@ int main() {
 
 	Ball ball{ballRadius, windowHeight/2};
   vector<float> velocity(2,0);
+
+  Level *currentLevel = new Level1;
 
 	while (true) {
 		sf::Event event;
