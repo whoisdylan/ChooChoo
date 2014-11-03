@@ -23,8 +23,8 @@ public:
     this->map = map;
   }
   void printMap() {
-    for (int row = 0; row < this->map.size(); row++) {
-      for (int col = 0; col < this->map[0].size(); col++) {
+    for (int row = 0; row < (int) this->map.size(); row++) {
+      for (int col = 0; col < (int) this->map[0].size(); col++) {
         cout << this->map[row][col] << " ";
       }
       cout << endl;

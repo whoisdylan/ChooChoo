@@ -2,27 +2,13 @@
 #include <math.h>
 #include <iostream>
 #include "Ball.hh"
-#include "Level1.cc"
+#include "Window.hh"
+#include "Level1.hh"
 
 #define PI 3.14159265
 
 using namespace std;
 using namespace sf;
-
-// struct Ball {
-// 	CircleShape shape;
-//   RectangleShape aimer;
-// 	Ball (float mX, float mY) {
-// 		shape.setPosition(mX, mY);
-// 		shape.setRadius(ballRadius);
-// 		shape.setFillColor(Color::Green);
-// 		shape.setOrigin(ballRadius, ballRadius);
-//     aimer.setPosition(mX, mY);
-//     aimer.setSize(Vector2f(50, 4));
-//     aimer.setFillColor(Color::Cyan);
-// 		aimer.setOrigin(0, 2);
-// 	}
-// };
 
 void handleMovement(vector<int> &velocity) {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
@@ -68,18 +54,20 @@ void handleForce(vector<float> &velocity) {
 }
 
 int main() {
-	RenderWindow window{{windowWidth, windowHeight}, "Baller"};
-	window.setFramerateLimit(60);
-
-	Ball ball{ballRadius, windowHeight/2};
-  vector<float> velocity(2,0);
+  baller::Window *window = new baller::Window;
+	// RenderWindow window{{windowWidth, windowHeight}, "Baller"};
+	window->window.setFramerateLimit(60);
 
   Level *currentLevel = new Level1;
 
+	Ball ball(100*currentLevel->teeOff.x, 100*currentLevel->teeOff.y);
+  vector<float> velocity(2,0);
+
+
 	while (true) {
 		sf::Event event;
-		window.pollEvent(event);
-		window.clear(Color::Black);
+		window->window.pollEvent(event);
+		window->window.clear(Color::Black);
 		if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) {
 			break;
 		}
@@ -98,9 +86,10 @@ int main() {
 		ball.shape.move(xOffset, yOffset);
 		ball.aimer.move(xOffset, yOffset);
 
-		window.draw(ball.shape);
-    window.draw(ball.aimer);
-		window.display();
+    window->drawCourse(currentLevel->teeOff, currentLevel->hole);
+		window->window.draw(ball.shape);
+    window->window.draw(ball.aimer);
+		window->window.display();
 	}
 	return 0;
 }

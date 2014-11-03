@@ -7,7 +7,6 @@
 using namespace std;
 using namespace sf;
 
-constexpr int windowWidth{800}, windowHeight{600};
 constexpr float ballRadius{10.f};
 
 class Ball {
