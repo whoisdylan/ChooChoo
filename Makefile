@@ -1,9 +1,9 @@
 CC = clang++
 CFLAGS = -std=c++11 -O3 -lsfml-system -lsfml-graphics -lsfml-window -lsfml-audio -Wall -Wextra -Werror -fexceptions
 # CFLAGS = -std=c++11 -O3 -lsfml-system -lsfml-graphics -lsfml-window -lsfml-audio -Wall -Wextra -Werror -fexceptions -isystem /usr/include -isystem /usr/local/include -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1 -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
-SRC = baller_main.cc Ball.cc Level1.cc Window.cc
+SRC = Engine.cc Ball.cc Level1.cc Window.cc
 OBJS = $(patsubst %.cc,objects/%.o,$(SRC))
-# OBJS = baller_main.o Ball.o
+# OBJS = Engine.o Ball.o
 
 all: baller
 
@@ -13,8 +13,8 @@ baller: $(OBJS)
 objects/%.o: %.cc
 	$(CC) -std=c++11 -O3 -c $< -o $@
 
-# objects/baller_main.o: baller_main.cc
-# 	$(CC) -std=c++11 -O3 -c baller_main.cc -o objects/baller_main.o
+# objects/Engine.o: Engine.cc
+# 	$(CC) -std=c++11 -O3 -c Engine.cc -o objects/Engine.o
 #
 # objects/ball.o: Ball.cc
 # 	$(CC) -std=c++11 -O3 -c Ball.cc -o objects/ball.o
