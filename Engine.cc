@@ -1,14 +1,90 @@
 #include <vector>
 #include <math.h>
 #include <iostream>
+#include "Engine.hh"
 #include "Ball.hh"
 #include "Window.hh"
+// #include "Input.hh"
 #include "Level1.hh"
 
 #define PI 3.14159265
 
 using namespace std;
-using namespace sf;
+// using namespace sf;
+
+ChooChoo::Engine::Engine(int windowWidth, int windowHeight, double framerate, Game *game) :
+  isRunning(false),
+  windowWidth(windowWidth),
+  windowHeight(windowHeight),
+  frameTime (sf::seconds(1.0/framerate)),
+  game (game) {
+}
+
+ChooChoo::Engine::~Engine() {
+  ChooChoo::Window::dispose();
+}
+
+void ChooChoo::Engine::createWindow(const string& title) {
+  ChooChoo::Window::create(windowWidth, windowHeight, title);
+}
+
+void ChooChoo::Engine::start() {
+  if (isRunning) {
+    return;
+  } else {
+    run();
+  }
+}
+
+void ChooChoo::Engine::stop() {
+  if (!isRunning) {
+    return;
+  } else {
+    isRunning = false;
+  }
+}
+
+void ChooChoo::Engine::run() {
+  isRunning = true;
+  // game->init();
+  sf::Clock clock;
+  sf::Time unprocessedTime = sf::seconds(0);
+  sf::Time frameCounter = sf::seconds(0);
+	int frames = 0;
+
+  while (isRunning) {
+    bool render = false;
+    sf::Time elapsedTime = clock.restart();
+
+		unprocessedTime += elapsedTime;
+		frameCounter += elapsedTime;
+
+    if (frameCounter.asSeconds() >= 1.0) {
+      cout << frames << " fps" << endl;
+      frames = 0;
+      frameCounter = sf::seconds(0);
+    }
+    while (unprocessedTime > frameTime) {
+      render = true;
+      if (Window::isCloseRequested()) {
+        stop();
+      }
+
+      Input::update();
+      // game->Input((float) frameTime);
+      // game->Update((float) frameTime);
+      
+      unprocessedTime -= frameTime;
+    }
+    if (render) {
+      // game->render();
+      Window::render();
+      frames++;
+    } else {
+      sf::sleep(sf::milliseconds(1));
+    }
+  }
+}
 
 void handleMovement(vector<int> &velocity) {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {

@@ -9,15 +9,15 @@
 enum TERRAIN_TYPE {GRASS, WALL, TEEOFF, HOLE};
 
 using namespace std;
-using namespace sf;
+// using namespace sf;
 
 class Level {
 public:
-  Vector2<int> teeOff;
-  Vector2<int> hole;
+  sf::Vector2i teeOff;
+  sf::Vector2i hole;
   vector< vector<TERRAIN_TYPE> > map;
   Level() {}
-  Level(Vector2<int> teeOff, Vector2<int> hole, vector< vector<TERRAIN_TYPE> >map) {
+  Level(sf::Vector2i teeOff, sf::Vector2i hole, vector< vector<TERRAIN_TYPE> >map) {
     this->teeOff = teeOff;
     this->hole = hole;
     this->map = map;

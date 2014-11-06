@@ -5,14 +5,14 @@
 #include <SFML/Graphics.hpp>
 
 using namespace std;
-using namespace sf;
+// using namespace sf;
 
 constexpr float ballRadius{10.f};
 
 class Ball {
   public:
-    CircleShape shape;
-    RectangleShape aimer;
+    sf::CircleShape shape;
+    sf::RectangleShape aimer;
     Ball (float, float);
 };
 
