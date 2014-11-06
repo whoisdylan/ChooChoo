@@ -12,7 +12,11 @@
 using namespace std;
 // using namespace sf;
 
+<<<<<<< HEAD
 ChooChoo::Engine::Engine(int windowWidth, int windowHeight, double framerate, Game *game) :
+=======
+Engine::Engine(int windowWidth, int windowHeight, double framerate, Game *game) :
+>>>>>>> 76fec15b001f7ddbef7e5730f0403f364f387221
   isRunning(false),
   windowWidth(windowWidth),
   windowHeight(windowHeight),
@@ -20,6 +24,7 @@ ChooChoo::Engine::Engine(int windowWidth, int windowHeight, double framerate, Ga
   game (game) {
 }
 
+<<<<<<< HEAD
 ChooChoo::Engine::~Engine() {
   ChooChoo::Window::dispose();
 }
@@ -29,6 +34,17 @@ void ChooChoo::Engine::createWindow(const string& title) {
 }
 
 void ChooChoo::Engine::start() {
+=======
+Engine::~Engine() {
+  Window::dispose();
+}
+
+void Engine::createWindow(const string& title) {
+  Window::create(windowWidth, windowHeight, title);
+}
+
+void Engine::start() {
+>>>>>>> 76fec15b001f7ddbef7e5730f0403f364f387221
   if (isRunning) {
     return;
   } else {
@@ -36,7 +52,11 @@ void ChooChoo::Engine::start() {
   }
 }
 
+<<<<<<< HEAD
 void ChooChoo::Engine::stop() {
+=======
+void Engine::stop() {
+>>>>>>> 76fec15b001f7ddbef7e5730f0403f364f387221
   if (!isRunning) {
     return;
   } else {
@@ -44,7 +64,11 @@ void ChooChoo::Engine::stop() {
   }
 }
 
+<<<<<<< HEAD
 void ChooChoo::Engine::run() {
+=======
+void Engine::run() {
+>>>>>>> 76fec15b001f7ddbef7e5730f0403f364f387221
   isRunning = true;
   // game->init();
   sf::Clock clock;
