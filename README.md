@@ -1,4 +1,4 @@
-baller
+ChooChoo
 ======
 
-Minigolf game created with c++ and SFML
+A game engine written in c++ with SFML
