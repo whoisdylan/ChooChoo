@@ -3,27 +3,28 @@
 
 #include <string>
 #include <SFML/Window.hpp>
+// #include "Input.hh"
 
 using namespace std;
 
 class Game;
 
-namespace ChooChoo {
 class Engine {
+friend class Input;
 public:
-  Engine(int windowWidth, int windowHeight, double framerate, Game *game);
+  Engine(unsigned int windowWidth, unsigned int windowHeight, double framerate, Game *game);
   ~Engine();
   void createWindow(const string& title);
   void start();
   void stop();
 private:
+  sf::Window gameWindow;
   void run();
   bool isRunning;
-  int windowWidth;
-  int windowHeight;
+  unsigned int windowWidth;
+  unsigned int windowHeight;
   sf::Time frameTime;
   Game *game;
 };
-}
 
 #endif

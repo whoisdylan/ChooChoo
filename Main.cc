@@ -1,0 +1,9 @@
+#include "Engine.hh"
+
+  // Engine(unsigned int windowWidth, unsigned int windowHeight, double framerate, Game *game);
+int main() {
+  Engine *choochoo = new Engine(1680, 1050, 60.0,(Game *) NULL);
+  choochoo->createWindow("Game: The Game");
+  choochoo->start();
+  return 0;
+}
