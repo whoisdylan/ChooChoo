@@ -1,7 +1,7 @@
 CC = clang++
 CFLAGS = -std=c++11 -O3 -lsfml-system -lsfml-graphics -lsfml-window -lsfml-audio -Wall -Wextra -Werror -fexceptions -framework OpenGL -framework GLUT
 # CFLAGS = -std=c++11 -O3 -lsfml-system -lsfml-graphics -lsfml-window -lsfml-audio -Wall -Wextra -Werror -fexceptions -isystem /usr/include -isystem /usr/local/include -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1 -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
-SRC = Main.cc Engine.cc Input.cc RenderUtil.cc
+SRC = Main.cc Engine.cc Input.cc RenderUtil.cc Mesh.cc Renderable.cc
 OBJS = $(patsubst %.cc,objects/%.o,$(SRC))
 # OBJS = Engine.o Ball.o
 

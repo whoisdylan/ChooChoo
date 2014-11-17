@@ -3,6 +3,7 @@
 
 #include <string>
 #include <SFML/Window.hpp>
+#include "Mesh.hh"
 // #include "Input.hh"
 
 using namespace std;
@@ -17,6 +18,7 @@ public:
   void createWindow(const string& title);
   void start();
   void stop();
+  void render();
 private:
   sf::Window gameWindow;
   void run();
@@ -25,6 +27,7 @@ private:
   unsigned int windowHeight;
   sf::Time frameTime;
   Game *game;
+  Mesh *testMesh;
 };
 
 #endif

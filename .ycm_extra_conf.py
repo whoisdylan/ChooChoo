@@ -41,6 +41,8 @@ flags = [
 '-lsfml-graphics',
 '-lsfml-window',
 '-lsfml-audio',
+'-framework OpenGL',
+'-framework GLUT',
 ]
 
 

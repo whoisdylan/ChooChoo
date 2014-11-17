@@ -1,13 +1,14 @@
 #include <vector>
 #include <math.h>
 #include <iostream>
+#include <SFML/OpenGL.hpp>
 #include "Engine.hh"
 #include "Input.hh"
+#include "RenderUtil.hh"
+#include "Mesh.hh"
 // #include "Level1.hh"
 // #include "Ball.hh"
 // #include "Window.hh"
-
-#define PI 3.14159265
 
 using namespace std;
 // using namespace sf;
@@ -25,7 +26,18 @@ Engine::~Engine() {
 }
 
 void Engine::createWindow(const string& title) {
-  gameWindow.create({windowWidth, windowHeight}, title);
+  sf::ContextSettings settings;
+  settings.depthBits = 24;
+  settings.stencilBits = 8;
+  settings.antialiasingLevel = 4;
+  settings.majorVersion = 3;
+  settings.minorVersion = 3;
+  gameWindow.create({windowWidth, windowHeight}, title, sf::Style::Default, settings);
+  RenderUtil::initGraphics();
+
+  testMesh = new Mesh;
+  vector<glm::vec3> triangle = {glm::vec3(-1,-1,0), glm::vec3(0,1,0), glm::vec3(1,-1,0)};
+  testMesh->addVertices(triangle);
 }
 
 void Engine::start() {
@@ -53,7 +65,7 @@ void Engine::run() {
 	int frames = 0;
 
   while (isRunning) {
-    bool render = false;
+    bool shouldRender = false;
     sf::Time elapsedTime = clock.restart();
 
 		unprocessedTime += elapsedTime;
@@ -65,7 +77,7 @@ void Engine::run() {
       frameCounter = sf::seconds(0);
     }
     while (unprocessedTime > frameTime) {
-      render = true;
+      shouldRender = true;
 
       Input::update(this);
       // game->Input((float) frameTime);
@@ -73,12 +85,19 @@ void Engine::run() {
       
       unprocessedTime -= frameTime;
     }
-    if (render) {
-      // game->render();
-      // Window::render();
+    if (shouldRender) {
+      render();
       frames++;
     } else {
       sf::sleep(sf::milliseconds(1));
     }
   }
+}
+
+void Engine::render() {
+  RenderUtil::clearScreen();
+  // game.render();
+  testMesh->draw();
+  gameWindow.display();
+  
 }
