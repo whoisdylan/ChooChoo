@@ -1,9 +1,14 @@
 #ifndef ENGINE_GUARD
 #define ENGINE_GUARD
 
+// #define GLEW_STATIC
+
+#include <GL/glew.h>
 #include <string>
 #include <SFML/Window.hpp>
+#include <SFML/OpenGL.hpp>
 #include "Mesh.hh"
+#include "Game.hh"
 // #include "Input.hh"
 
 using namespace std;
@@ -27,7 +32,6 @@ private:
   unsigned int windowHeight;
   sf::Time frameTime;
   Game *game;
-  Mesh *testMesh;
 };
 
 #endif

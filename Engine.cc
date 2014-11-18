@@ -1,8 +1,7 @@
+#include "Engine.hh"
 #include <vector>
 #include <math.h>
 #include <iostream>
-#include <SFML/OpenGL.hpp>
-#include "Engine.hh"
 #include "Input.hh"
 #include "RenderUtil.hh"
 #include "Mesh.hh"
@@ -33,11 +32,9 @@ void Engine::createWindow(const string& title) {
   settings.majorVersion = 3;
   settings.minorVersion = 3;
   gameWindow.create({windowWidth, windowHeight}, title, sf::Style::Default, settings);
+  glewExperimental = GL_TRUE;
+  glewInit();
   RenderUtil::initGraphics();
-
-  testMesh = new Mesh;
-  vector<glm::vec3> triangle = {glm::vec3(-1,-1,0), glm::vec3(0,1,0), glm::vec3(1,-1,0)};
-  testMesh->addVertices(triangle);
 }
 
 void Engine::start() {
@@ -58,7 +55,7 @@ void Engine::stop() {
 
 void Engine::run() {
   isRunning = true;
-  // game->init();
+  game->init();
   sf::Clock clock;
   sf::Time unprocessedTime = sf::seconds(0);
   sf::Time frameCounter = sf::seconds(0);
@@ -96,8 +93,7 @@ void Engine::run() {
 
 void Engine::render() {
   RenderUtil::clearScreen();
-  // game.render();
-  testMesh->draw();
+  game->render();
   gameWindow.display();
   
 }
