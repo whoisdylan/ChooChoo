@@ -3,6 +3,8 @@
 
 #include "Mesh.hh"
 #include "Shader.hh"
+#include <SFML/Window.hpp>
+#include <glm/matrix.hpp>
 
 class Game {
 public:
@@ -10,7 +12,11 @@ public:
   void init();
   Shader *testShader;
   Mesh *testMesh;
+  void update();
   void render();
+private:
+  sf::Clock gameClock;
+  glm::mat4 translateX;
 };
 
 #endif

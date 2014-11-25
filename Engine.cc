@@ -78,6 +78,7 @@ void Engine::run() {
 
       Input::update(this);
       // game->Input((float) frameTime);
+      game->update();
       // game->Update((float) frameTime);
       
       unprocessedTime -= frameTime;
