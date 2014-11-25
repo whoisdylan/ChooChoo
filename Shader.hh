@@ -4,6 +4,7 @@
 #include <SFML/OpenGL.hpp>
 #include <string>
 #include <map>
+#include <glm/vec3.hpp>
 #include <glm/matrix.hpp>
 
 class Shader {
@@ -13,10 +14,12 @@ public:
   // void addGeometryShader(const std::string&);
   void addFragmentShader(const std::string&);
   void bind();
+
   void addUniform(const std::string&);
-  template<typename T>
-  void setUniform(const std::string&, T&);
-  void setUniform(const std::string &, glm::mat4);
+  void setUniform(const std::string &, int);
+  void setUniform(const std::string &, float);
+  void setUniform(const std::string &, glm::vec3 &);
+  void setUniform(const std::string &, glm::mat4 &);
 private:
   std::map<std::string, int> uniformMap;
   int program;

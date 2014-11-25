@@ -2,8 +2,6 @@
 #include <fstream>
 #include <iostream>
 #include <cassert>
-#include <glm/vec3.hpp>
-#include <glm/matrix.hpp>
 
 Shader::Shader(const std::string& filename) {
   program = glCreateProgram();
@@ -32,22 +30,19 @@ void Shader::addUniform(const std::string &name) {
   uniformMap.insert(std::pair<std::string, unsigned int>(name, location));
 }
 
-//TODO: change to overloading
-template<typename T>
-void Shader::setUniform(const std::string &name, T &value) {
-  glm::mat4 x;
-  if (typeid(T) == typeid(int)) {
-    glUniform1i(uniformMap[name], value);
-  } else if (typeid(T) == typeid(char)) {
-    glUniform1f(uniformMap[name], value);
-  } else if (typeid(T) == typeid(glm::vec3)) {
-    glUniform3f(uniformMap[name], value.x, value.y, value.z);
-  } else if (typeid(T) == typeid(glm::mat4)) {
-    glUniformMatrix4fv(uniformMap[name], 1, GL_FALSE, &(value[0][0]));
-  }
+void Shader::setUniform(const std::string &name, int value) {
+  glUniform1i(uniformMap[name], value);
 }
 
-void Shader::setUniform(const std::string &name, glm::mat4 value) {
+void Shader::setUniform(const std::string &name, float value) {
+  glUniform1f(uniformMap[name], value);
+}
+
+void Shader::setUniform(const std::string &name, glm::vec3 &value) {
+  glUniform3f(uniformMap[name], value.x, value.y, value.z);
+}
+
+void Shader::setUniform(const std::string &name, glm::mat4 &value) {
   glUniformMatrix4fv(uniformMap[name], 1, GL_FALSE, &(value[0][0]));
 }
 
