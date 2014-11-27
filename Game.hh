@@ -16,7 +16,7 @@ public:
   void render();
 private:
   sf::Clock gameClock;
-  glm::mat4 translateX;
+  glm::mat4 transform;
 };
 
 #endif

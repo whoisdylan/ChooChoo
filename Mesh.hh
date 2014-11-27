@@ -10,11 +10,12 @@
 class Mesh : public Renderable {
 public:
   Mesh();
-  void addVertices(std::vector<glm::vec3>);
+  void addVertices(std::vector<glm::vec3> &, std::vector<int> &);
   virtual void draw();
 private:
   unsigned int vao;
   unsigned int vbo;
+  unsigned int ibo;
   int size;
   int vertexSize;
 };
