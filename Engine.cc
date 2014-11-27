@@ -32,6 +32,7 @@ void Engine::createWindow(const string& title) {
   settings.majorVersion = 3;
   settings.minorVersion = 3;
   gameWindow.create({windowWidth, windowHeight}, title, sf::Style::Default, settings);
+  gameWindow.setVerticalSyncEnabled(true);
   glewExperimental = GL_TRUE;
   glewInit();
   RenderUtil::initGraphics();
