@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/trigonometric.hpp>
 #include <vector>
+#include <iostream>
 
 Game::Game() {
 }
@@ -17,19 +18,28 @@ void Game::init() {
 
   testShader = new Shader("basicShader");
   testShader->addUniform("transform");
-  // glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(1,0,0));
+  glm::vec3 translate = {0,0,0};
+  glm::vec3 rotate = {0,0,0};
+  float rotateAngle = 0;
+  glm::vec3 scale = {1,1,1};
+  transform = new Transform(translate, rotate, rotateAngle, scale);
 }
 
 
 void Game::update() {
   sf::Time elapsedTime = gameClock.getElapsedTime();
-  // transform = glm::translate(glm::mat4(1.0f), glm::vec3(glm::sin(elapsedTime.asSeconds()),0,0));
   auto elapsedSin = glm::sin(elapsedTime.asSeconds());
-  transform = glm::rotate(glm::mat4(1.0f), elapsedSin, glm::vec3(1,0,0));
+  glm::vec3 translate = {0,0,0};
+  glm::vec3 rotate = {1,0,0};
+  // float rotateAngle = 100*elapsedTime.asSeconds();
+  float rotateAngle = 0;
+  glm::vec3 scale = {elapsedSin,elapsedSin,elapsedSin};
+  // glm::vec3 scale = {1,1,1};
+  transform->setTransform(translate, rotate, rotateAngle, scale);
 }
 
 void Game::render() {
   testShader->bind();
-  testShader->setUniform("transform", transform);
+  testShader->setUniform("transform", transform->transform);
   testMesh->draw();
 }

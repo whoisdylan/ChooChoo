@@ -3,6 +3,7 @@
 
 #include "Mesh.hh"
 #include "Shader.hh"
+#include "Transform.hh"
 #include <SFML/Window.hpp>
 #include <glm/matrix.hpp>
 
@@ -16,7 +17,7 @@ public:
   void render();
 private:
   sf::Clock gameClock;
-  glm::mat4 transform;
+  Transform *transform;
 };
 
 #endif
