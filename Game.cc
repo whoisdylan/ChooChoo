@@ -4,46 +4,41 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/trigonometric.hpp>
 #include <vector>
-#include <iostream>
 
 Game::Game() {
 }
 void Game::init() {
   testMesh = new Mesh;
-  // std::vector<glm::vec3> vertices = {glm::vec3(-1,-1,0), glm::vec3(0,1,0), glm::vec3(1,-1,0), 
-  //   glm::vec3(1, 1, 0), glm::vec3(-1, 1, 0)};
   std::vector<glm::vec3> vertices = {{-1,-1,0}, {0,1,0}, {1,-1,0}, {0,-1,1}};
-  // std::vector<int> triangleIndices = {0,1,2};
-  // std::vector<int> squareIndices = {0, 4, 1, 0, 1, 2, 2, 1, 3};
   std::vector<int> pyramidIndices = {0,1,3, 3,1,2, 2,1,0, 0,3,2};
   testMesh->addVertices(vertices, pyramidIndices);
 
   testShader = new Shader("basicShader");
   testShader->addUniform("transform");
-  glm::vec3 translate = {0,0,0};
-  glm::vec3 rotate = {0,0,0};
-  float rotateAngle = 0;
-  glm::vec3 scale = {1,1,1};
   transform = new Transform();
-  transform->setTransform(translate, rotate, rotateAngle, scale);
+  transform->setProjection(70.0f, 1680, 1050, 0.1, 1000);
 }
 
 
 void Game::update() {
   sf::Time elapsedTime = gameClock.getElapsedTime();
   auto elapsedSin = glm::sin(elapsedTime.asSeconds());
-  glm::vec3 translate = {0,0,0};
+
+  glm::vec3 translate = {0,0,-3};
+  transform->translate(translate);
+  
   glm::vec3 rotate = {1,0,0};
   float rotateAngle = 100*elapsedTime.asSeconds();
-  // float rotateAngle = 0;
+  transform->rotate(rotateAngle, rotate);
+
   glm::vec3 scale = {elapsedSin,elapsedSin,elapsedSin};
-  // glm::vec3 scale = {1,1,1};
-  transform->setTransform(translate, rotate, rotateAngle, scale);
+  transform->scale(scale);
+  // transform->setTransform(translate, rotate, rotateAngle, scale);
 }
 
 void Game::render() {
   testShader->bind();
-  glm::mat4 fullTransform = transform->getTransform();
+  glm::mat4 fullTransform = transform->getProjectedTransform();
   testShader->setUniform("transform", fullTransform);
   testMesh->draw();
 }
