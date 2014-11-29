@@ -7,13 +7,18 @@
 
 class Transform {
 public:
-  Transform(const glm::vec3 &, const glm::vec3 &, const float, const glm::vec3 &);
+  Transform();
+  glm::mat4 getTransform();
   void setTransform(const glm::vec3 &, const glm::vec3 &, const float, const glm::vec3 &);
-  glm::mat4 transform;
+  void translate(const glm::vec3 &);
+  void rotate(const glm::vec3 &, const float);
+  void scale(const glm::vec3 &);
+  void scale(const float);
+  // glm::mat4 transform;
 private:
-  // glm::mat4 rotateTransform;
-  // glm::mat4 translateTransform;
-  // glm::mat4 scaleTransform;
+  glm::mat4 rotateTransform;
+  glm::mat4 translateTransform;
+  glm::mat4 scaleTransform;
 };
 
 #endif
