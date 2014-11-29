@@ -1,6 +1,7 @@
 #ifndef TRANSFORM_GUARD
 #define TRANSFORM_GUARD
 
+#include "Camera.hh"
 #include <glm/matrix.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/trigonometric.hpp>
@@ -17,6 +18,8 @@ public:
   void scale(const glm::vec3 &);
   void scale(const float);
   // glm::mat4 transform;
+
+  Camera *camera;
 private:
   glm::mat4 rotateTransform;
   glm::mat4 translateTransform;

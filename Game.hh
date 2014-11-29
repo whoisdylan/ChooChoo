@@ -4,6 +4,7 @@
 #include "Mesh.hh"
 #include "Shader.hh"
 #include "Transform.hh"
+#include "Camera.hh"
 #include <SFML/Window.hpp>
 #include <glm/matrix.hpp>
 
@@ -14,7 +15,9 @@ public:
   Shader *testShader;
   Mesh *testMesh;
   void update();
+  void input();
   void render();
+  Camera *camera;
 private:
   sf::Clock gameClock;
   Transform *transform;

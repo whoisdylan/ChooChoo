@@ -78,7 +78,8 @@ void Engine::run() {
       shouldRender = true;
 
       Input::update(this);
-      // game->Input((float) frameTime);
+      game->input();
+      // game->input((float) frameTime);
       game->update();
       // game->Update((float) frameTime);
       

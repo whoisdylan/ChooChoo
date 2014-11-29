@@ -8,7 +8,9 @@ Transform::Transform() {
 
 glm::mat4 Transform::getTransform() {
   // transform = translateTransform*rotateTransform*scaleTransform;
-  return translateTransform*rotateTransform*scaleTransform;
+  
+  glm::mat4 cameraMatrix = glm::lookAt(camera->position, camera->forward, camera->up);
+  return translateTransform*rotateTransform*scaleTransform*cameraMatrix;
 }
 
 glm::mat4 Transform::getProjectedTransform() {

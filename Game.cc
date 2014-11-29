@@ -17,6 +17,8 @@ void Game::init() {
   testShader->addUniform("transform");
   transform = new Transform();
   transform->setProjection(70.0f, 1680, 1050, 0.1, 1000);
+  camera = new Camera();
+  transform->camera = camera;
 }
 
 
@@ -27,13 +29,17 @@ void Game::update() {
   glm::vec3 translate = {0,0,-3};
   transform->translate(translate);
   
-  glm::vec3 rotate = {1,0,0};
+  glm::vec3 rotate = {0,1,0};
   float rotateAngle = 100*elapsedTime.asSeconds();
-  transform->rotate(rotateAngle, rotate);
+  // transform->rotate(rotateAngle, rotate);
 
   glm::vec3 scale = {elapsedSin,elapsedSin,elapsedSin};
-  transform->scale(scale);
+  // transform->scale(scale);
   // transform->setTransform(translate, rotate, rotateAngle, scale);
+}
+
+void Game::input() {
+  camera->input();
 }
 
 void Game::render() {
