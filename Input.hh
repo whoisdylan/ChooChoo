@@ -10,8 +10,8 @@ public:
   static void update(Engine *);
   static queue<sf::Keyboard::Key> pressedKeys;
   static bool downKeys[sf::Keyboard::KeyCount];
-  static bool keyHit[sf::Keyboard::KeyCount];
-  static bool isKeyHit(sf::Keyboard::Key);
+  // static bool keyHit[sf::Keyboard::KeyCount];
+  // static bool isKeyHit(sf::Keyboard::Key);
 };
 
 #endif
