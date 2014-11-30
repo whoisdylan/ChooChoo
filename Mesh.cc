@@ -1,4 +1,6 @@
 #include "Mesh.hh"
+#include "Util.hh"
+#include <fstream>
 #include <iostream>
 
 Mesh::Mesh() {
@@ -32,4 +34,35 @@ void Mesh::draw() {
   glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
 
   glDisableVertexAttribArray(0);
+}
+
+void Mesh::loadFile(const std::string &fileName) {
+  std::ifstream file;
+  file.open((fileName).c_str());
+
+  std::string output;
+  std::string line;
+
+  std::vector<glm::vec3> vertices;
+  std::vector<int> indices;
+
+  if (file.is_open()) {
+    while (file.good()) {
+      getline(file, line);
+      if (line[0] == '#') {
+        continue;
+      }
+      std::vector<std::string> tokens = Util::split(line, " ");
+      if (tokens[0] == "v") {
+        vertices.push_back({std::stof(tokens[1]), std::stof(tokens[2]), std::stof(tokens[3])});
+      } else if (tokens[0] == "f") {
+        for (auto iter = tokens.begin()+1; iter != tokens.end(); iter++) {
+          indices.push_back(std::stoi(*iter)-1);
+        }
+      }
+    }
+    addVertices(vertices, indices);
+  } else {
+    std::cerr << "Unable to load mesh: " << fileName << std::endl;
+  }
 }
