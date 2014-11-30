@@ -8,13 +8,13 @@ Transform::Transform() {
 
 glm::mat4 Transform::getTransform() {
   // transform = translateTransform*rotateTransform*scaleTransform;
-  
-  glm::mat4 cameraMatrix = glm::lookAt(camera->position, camera->forward, camera->up);
-  return translateTransform*rotateTransform*scaleTransform*cameraMatrix;
+  return translateTransform*rotateTransform*scaleTransform;
 }
 
 glm::mat4 Transform::getProjectedTransform() {
-  return glm::perspectiveFov(fov, width, height, zNear, zFar)*getTransform();
+  glm::mat4 perspectiveMatrix = glm::perspectiveFov(fov, width, height, zNear, zFar);
+  glm::mat4 cameraMatrix = glm::lookAt(camera->position, camera->forward, camera->up);
+  return perspectiveMatrix*cameraMatrix*getTransform();
 }
 
 void Transform::setProjection(const float fov, const float width, const float height, const float zNear, const float zFar) {

@@ -13,7 +13,9 @@ Camera::Camera(glm::vec3 position, glm::vec3 forward, glm::vec3 up):
 
 void Camera::move(glm::vec3 direction, float distance) {
   position = position + (direction*distance);
-  std::cout << "posX = " << position.x << " posY = " << position.y << " posZ = " << position.z << std::endl;
+  // forward = glm::normalize(forward + (direction*distance));
+  // up = glm::normalize(up + (direction*distance));
+  // std::cout << "posX = " << position.x << " posY = " << position.y << " posZ = " << position.z << std::endl;
 }
 
 void Camera::rotateX(float angle) {
@@ -44,29 +46,29 @@ void Camera::input() {
   const float moveAmount = .01;
   const float rotateAmount = 1;
 
-  if (Input::isKeyHit(sf::Keyboard::Up)) {
+  if (Input::downKeys[sf::Keyboard::W]) {
     move(forward, moveAmount);
   }
-  if (Input::isKeyHit(sf::Keyboard::Down)) {
+  if (Input::downKeys[sf::Keyboard::S]) {
     move(forward, -moveAmount);
   }
-  if (Input::isKeyHit(sf::Keyboard::Left)) {
-    move(left(), -moveAmount);
+  if (Input::downKeys[sf::Keyboard::A]) {
+    move(left(), moveAmount);
   }
-  if (Input::isKeyHit(sf::Keyboard::Right)) {
-    move(right(), -moveAmount);
+  if (Input::downKeys[sf::Keyboard::D]) {
+    move(right(), moveAmount);
   }
 
-  // if (Input::isKeyHit(sf::Keyboard::Up)) {
-  //   rotateX(-rotateAmount);
-  // }
-  // if (Input::isKeyHit(sf::Keyboard::Down)) {
-  //   rotateX(rotateAmount);
-  // }
-  // if (Input::isKeyHit(sf::Keyboard::Left)) {
-  //   rotateY(-rotateAmount);
-  // }
-  // if (Input::isKeyHit(sf::Keyboard::Right)) {
-  //   rotateY(rotateAmount);
-  // }
+  if (Input::downKeys[sf::Keyboard::Up]) {
+    rotateX(-rotateAmount);
+  }
+  if (Input::downKeys[sf::Keyboard::Down]) {
+    rotateX(rotateAmount);
+  }
+  if (Input::downKeys[sf::Keyboard::Left]) {
+    rotateY(-rotateAmount);
+  }
+  if (Input::downKeys[sf::Keyboard::Right]) {
+    rotateY(rotateAmount);
+  }
 }
