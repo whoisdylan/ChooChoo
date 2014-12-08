@@ -1,4 +1,5 @@
 #include "Shader.hh"
+#include "Material.hh"
 #include <fstream>
 #include <iostream>
 #include <cassert>
@@ -18,10 +19,17 @@ Shader::Shader(const std::string& filename) {
 
   compileShader();
 
+  addUniform("transform");
+  addUniform("color");
 }
 
 void Shader::bind() {
   glUseProgram(program);
+}
+
+void Shader::updateUniforms(glm::mat4 worldMatrix, glm::mat4 projectedMatrix, Material *material) {
+  setUniform("transform", projectedMatrix);
+  setUniform("color", material->color);
 }
 
 void Shader::addUniform(const std::string &name) {

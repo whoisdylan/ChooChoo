@@ -16,8 +16,8 @@ Engine::Engine(unsigned int windowWidth, unsigned int windowHeight, double frame
   isRunning(false),
   windowWidth(windowWidth),
   windowHeight(windowHeight),
-  frameTime (sf::seconds(1.0/framerate)),
-  game (game) {
+  frameTime(sf::seconds(1.0/framerate)),
+  game(game) {
 }
 
 Engine::~Engine() {

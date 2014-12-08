@@ -9,15 +9,15 @@ Game::Game() {
 }
 void Game::init() {
   testMesh = new Mesh;
-
   testMesh->loadFile("cube.obj");
 
   // std::vector<glm::vec3> vertices = {{-1,-1,0}, {0,1,0}, {1,-1,0}, {0,-1,1}};
   // std::vector<int> pyramidIndices = {0,1,3, 3,1,2, 2,1,0, 0,3,2};
   // testMesh->addVertices(vertices, pyramidIndices);
 
+  material = new Material({0,1,1});
+
   testShader = new Shader("basicShader");
-  testShader->addUniform("transform");
   transform = new Transform();
   transform->setProjection(70.0f, 1680, 1050, 0.1, 1000);
   camera = new Camera();
@@ -47,7 +47,6 @@ void Game::input() {
 
 void Game::render() {
   testShader->bind();
-  glm::mat4 fullTransform = transform->getProjectedTransform();
-  testShader->setUniform("transform", fullTransform);
+  testShader->updateUniforms(transform->getTransform(), transform->getProjectedTransform(), material);
   testMesh->draw();
 }

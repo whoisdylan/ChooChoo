@@ -5,6 +5,7 @@
 #include "Shader.hh"
 #include "Transform.hh"
 #include "Camera.hh"
+#include "Material.hh"
 #include <SFML/Window.hpp>
 #include <glm/matrix.hpp>
 
@@ -21,6 +22,7 @@ public:
 private:
   sf::Clock gameClock;
   Transform *transform;
+  Material *material;
 };
 
 #endif
