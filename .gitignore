@@ -4,3 +4,4 @@ objects/
 choochoo
 main_baller
 .ycm_extra_conf.pyc
+.DS_Store
