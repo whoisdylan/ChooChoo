@@ -17,7 +17,7 @@ public:
   void bind();
 
   void addUniform(const std::string&);
-  void updateUniforms(glm::mat4, glm::mat4, Material *);
+  void updateUniforms(glm::mat4, glm::mat4, Material &);
   void setUniform(const std::string &, int);
   void setUniform(const std::string &, float);
   void setUniform(const std::string &, glm::vec3 &);

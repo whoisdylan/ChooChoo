@@ -5,7 +5,8 @@
 #include <glm/trigonometric.hpp>
 #include <vector>
 
-Game::Game() {
+Game::Game() :
+  material(Material({0,1,1})) {
 }
 void Game::init() {
   testMesh = new Mesh;
@@ -14,8 +15,6 @@ void Game::init() {
   // std::vector<glm::vec3> vertices = {{-1,-1,0}, {0,1,0}, {1,-1,0}, {0,-1,1}};
   // std::vector<int> pyramidIndices = {0,1,3, 3,1,2, 2,1,0, 0,3,2};
   // testMesh->addVertices(vertices, pyramidIndices);
-
-  material = new Material({0,1,1});
 
   testShader = new Shader("basicShader");
   transform = new Transform();

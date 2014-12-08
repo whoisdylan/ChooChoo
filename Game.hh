@@ -22,7 +22,7 @@ public:
 private:
   sf::Clock gameClock;
   Transform *transform;
-  Material *material;
+  Material material;
 };
 
 #endif
