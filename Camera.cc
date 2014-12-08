@@ -66,9 +66,9 @@ void Camera::input() {
     rotateX(rotateAmount);
   }
   if (Input::downKeys[sf::Keyboard::Left]) {
-    rotateY(-rotateAmount);
+    rotateY(rotateAmount);
   }
   if (Input::downKeys[sf::Keyboard::Right]) {
-    rotateY(rotateAmount);
+    rotateY(-rotateAmount);
   }
 }
